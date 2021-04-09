@@ -1,21 +1,14 @@
 import React from 'react';
-import { Typography } from "@material-ui/core";
 import { Container } from './components/container'
 import { AboutCard } from './components/about';
+const title = 'NESGAA';
 
 function App() {
+  document.title = title;
   return (
-    <div>
-      <Container>
-        <Typography variant='h2'>
-          No estas solo grupo anonimo
-        </Typography>
-        <Typography variant='body2'  >
-          Estamos aqui para poder brindar ayuda a personas con problemas de depresion.
-            <AboutCard />
-        </Typography>
-      </Container>
-    </div>
+    <Container>
+      <AboutCard />
+    </Container>
   );
 }
 
