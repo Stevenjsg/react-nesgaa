@@ -8,11 +8,13 @@ import {
   Menu,
   MenuItem,
   Badge,
+  Link,
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -42,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 export const Navbar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [auth, setAuth] = React.useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -49,6 +52,58 @@ export const Navbar = () => {
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const profileRegister = () => {
+    if (auth) {
+      <Link
+        color="textPrimary"
+        component={RouterLink}
+        to="/profile"
+        rel="noreferrer"
+        underline="none"
+      >
+        Perfil
+      </Link>;
+    } else {
+      return (
+        <Link
+          color="textPrimary"
+          component={RouterLink}
+          to="/SignIn"
+          rel="noreferrer"
+          underline="none"
+        >
+          Registrar
+        </Link>
+      );
+    }
+  };
+
+  const loginExit = () => {
+    if (auth) {
+      <Link
+        color="textPrimary"
+        component={RouterLink}
+        to="/logout"
+        rel="noreferrer"
+        underline="none"
+      >
+        Salir
+      </Link>;
+    } else {
+      return (
+        <Link
+          color="textPrimary"
+          component={RouterLink}
+          to="/login"
+          rel="noreferrer"
+          underline="none"
+        >
+          Log In
+        </Link>
+      );
+    }
   };
 
   const handleMobileMenuClose = () => {
@@ -75,8 +130,8 @@ export const Navbar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{profileRegister()}</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{loginExit()}</MenuItem>
     </Menu>
   );
 
@@ -97,7 +152,7 @@ export const Navbar = () => {
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <p>Mensajes</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -105,7 +160,7 @@ export const Navbar = () => {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>Notificación</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -116,7 +171,7 @@ export const Navbar = () => {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Cuenta</p>
       </MenuItem>
     </Menu>
   );
@@ -126,7 +181,15 @@ export const Navbar = () => {
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            NESGAA
+            <Link
+              color="textPrimary"
+              component={RouterLink}
+              to="/"
+              rel="noreferrer"
+              underline="none"
+            >
+              NESGAA
+            </Link>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

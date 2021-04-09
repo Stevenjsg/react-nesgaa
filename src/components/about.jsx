@@ -72,11 +72,7 @@ export const AboutCard = () => {
             </Typography>
           </Grid>
           <Grid item container md={12} alignItems="center" justify="center">
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-            >
+            <Button variant="contained" color="secondary">
               A por ello
             </Button>
           </Grid>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
-import { Navbar } from "./navbar";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -19,9 +18,6 @@ export const Container = (props) => {
   const classes = useStyles();
   return (
     <Grid container direction="column" className={classes.grid}>
-      <Grid item>
-        <Navbar />
-      </Grid>
       <Grid item container>
         <Grid item sm={2} />
         <Grid item xs={12} sm={8} className={classes.subgrid}>
